@@ -1,4 +1,5 @@
-%p#notice= notice
+-if current_user == @user
+  %h2 Signed In
 
 %p
   %b User name:
@@ -6,9 +7,6 @@
 %p
   %b Email:
   = @user.email
-%p
-  %b Password digest:
-  = @user.password_digest
 
 = link_to 'Edit', edit_user_path(@user)
 \|

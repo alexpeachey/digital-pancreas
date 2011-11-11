@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
+  skip_before_filter :require_login, only: [:account,:new,:create]
 
-  def index
-    not_found
+  def account
+    redirect_to current_user and return if current_user.present?
+    redirect_to sign_in_path
   end
 
   # GET /users/1
@@ -38,7 +40,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        session[:user_id] = @user.id
+        format.html { redirect_to @user, notice: 'Successfully created account.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -54,7 +57,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: 'Successfully updated account.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

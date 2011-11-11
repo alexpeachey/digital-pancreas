@@ -1,7 +1,16 @@
 Bssm::Application.routes.draw do
+  root to: 'users#account'
+  match 'account' => 'users#account', as: :account
+  
+  match 'sign_in' => 'sessions#new', as: :sign_in
+  match 'sign_out' => 'sessions#destroy', as: :sign_out
+  resources :sessions, only: [:new,:create,:destroy]
+  
   resources :glucose_readings
 
-  resources :users
+  match 'sign_up' => 'users#new', as: :sign_up
+  resources :users, except: [:index] do
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
