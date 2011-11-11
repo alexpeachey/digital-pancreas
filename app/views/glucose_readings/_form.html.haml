@@ -1,0 +1,22 @@
+= form_for @glucose_reading do |f|
+  -if @glucose_reading.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@glucose_reading.errors.count, "error")} prohibited this glucose_reading from being saved:"
+      %ul
+        - @glucose_reading.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :user_id
+    = f.number_field :user_id
+  .field
+    = f.label :glucose_value
+    = f.number_field :glucose_value
+  .field
+    = f.label :reading_at
+    = f.datetime_select :reading_at
+  .field
+    = f.label :comment
+    = f.text_field :comment
+  .actions
+    = f.submit 'Save'

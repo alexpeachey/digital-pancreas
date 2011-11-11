@@ -4,3 +4,10 @@ Factory.define :user do |f|
   f.password "password"
   f.password_confirmation "password"
 end
+
+Factory.define :glucose_reading do |f|
+  f.association :user
+  f.glucose_value 80 + rand(40)
+  f.meal_code 1 + rand(6)
+  f.reading_at  Time.now
+end

@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @glucose_reading.user_id
+%p
+  %b Glucose value:
+  = @glucose_reading.glucose_value
+%p
+  %b Reading at:
+  = @glucose_reading.reading_at
+%p
+  %b Comment:
+  = @glucose_reading.comment
+
+= link_to 'Edit', edit_glucose_reading_path(@glucose_reading)
+\|
+= link_to 'Back', glucose_readings_path

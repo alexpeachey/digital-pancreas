@@ -47,4 +47,140 @@ describe User do
     @user.id.should == @u.id
   end
   
+  it "should have a collection of glucose_readings" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user)
+    @r2 = Factory(:glucose_reading, user: @user)
+    @user.glucose_readings.should include @r1
+  end
+  
+  it "should have an average_glucose_level" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user)
+    @r2 = Factory(:glucose_reading, user: @user)
+    @user.average_glucose_level.should == (@r1.glucose_value + @r2.glucose_value)/2
+  end
+  
+  it "should have an average_glucose_level between two different dates" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user)
+    @r2 = Factory(:glucose_reading, user: @user)
+    @r3 = Factory(:glucose_reading, user: @user, reading_at: Time.now - 5.days)
+    @user.average_glucose_level(begin_date: Time.now - 1.day, end_date: Time.now).should == (@r1.glucose_value + @r2.glucose_value)/2
+  end
+  
+  it "should have an average_glucose_level since a specific date" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user)
+    @r2 = Factory(:glucose_reading, user: @user)
+    @r3 = Factory(:glucose_reading, user: @user, reading_at: Time.now - 5.days)
+    @user.average_glucose_level(begin_date: Time.now - 1.day).should == (@r1.glucose_value + @r2.glucose_value)/2
+  end
+  
+  it "should have an average_glucose_level for last n number of readings" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user)
+    @r2 = Factory(:glucose_reading, user: @user)
+    @r3 = Factory(:glucose_reading, user: @user, reading_at: Time.now - 5.days)
+    @user.average_glucose_level(n: 2).should == (@r1.glucose_value + @r2.glucose_value)/2
+  end
+  
+  it "should have an average_glucose_level for a specific meal_code" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user, meal_code: 2)
+    @r2 = Factory(:glucose_reading, user: @user, meal_code: 2)
+    @r3 = Factory(:glucose_reading, user: @user, meal_code: 3)
+    @user.average_glucose_level(meal_code: 2).should == (@r1.glucose_value + @r2.glucose_value)/2
+  end
+  
+  it "should have an min_glucose_level" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user)
+    @r2 = Factory(:glucose_reading, user: @user)
+    @user.min_glucose_level.should == [@r1.glucose_value, @r2.glucose_value].min
+  end
+  
+  it "should have an min_glucose_level between two different dates" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user)
+    @r2 = Factory(:glucose_reading, user: @user)
+    @r3 = Factory(:glucose_reading, user: @user, reading_at: Time.now - 5.days)
+    @user.min_glucose_level(begin_date: Time.now - 1.day, end_date: Time.now).should == [@r1.glucose_value, @r2.glucose_value].min
+  end
+  
+  it "should have an min_glucose_level since a specific date" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user)
+    @r2 = Factory(:glucose_reading, user: @user)
+    @r3 = Factory(:glucose_reading, user: @user, reading_at: Time.now - 5.days)
+    @user.min_glucose_level(begin_date: Time.now - 1.day).should == [@r1.glucose_value, @r2.glucose_value].min
+  end
+  
+  it "should have an min_glucose_level for last n number of readings" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user)
+    @r2 = Factory(:glucose_reading, user: @user)
+    @r3 = Factory(:glucose_reading, user: @user, reading_at: Time.now - 5.days)
+    @user.min_glucose_level(n: 2).should == [@r1.glucose_value, @r2.glucose_value].min
+  end
+  
+  it "should have an min_glucose_level for a specific meal_code" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user, meal_code: 2)
+    @r2 = Factory(:glucose_reading, user: @user, meal_code: 2)
+    @r3 = Factory(:glucose_reading, user: @user, meal_code: 3)
+    @user.min_glucose_level(meal_code: 2).should == [@r1.glucose_value, @r2.glucose_value].min
+  end
+  
+  it "should have an max_glucose_level" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user)
+    @r2 = Factory(:glucose_reading, user: @user)
+    @user.max_glucose_level.should == [@r1.glucose_value, @r2.glucose_value].max
+  end
+  
+  it "should have an max_glucose_level between two different dates" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user)
+    @r2 = Factory(:glucose_reading, user: @user)
+    @r3 = Factory(:glucose_reading, user: @user, reading_at: Time.now - 5.days)
+    @user.max_glucose_level(begin_date: Time.now - 1.day, end_date: Time.now).should == [@r1.glucose_value, @r2.glucose_value].max
+  end
+  
+  it "should have an max_glucose_level since a specific date" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user)
+    @r2 = Factory(:glucose_reading, user: @user)
+    @r3 = Factory(:glucose_reading, user: @user, reading_at: Time.now - 5.days)
+    @user.max_glucose_level(begin_date: Time.now - 1.day).should == [@r1.glucose_value, @r2.glucose_value].max
+  end
+  
+  it "should have an max_glucose_level for last n number of readings" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user)
+    @r2 = Factory(:glucose_reading, user: @user)
+    @r3 = Factory(:glucose_reading, user: @user, reading_at: Time.now - 5.days)
+    @user.max_glucose_level(n: 2).should == [@r1.glucose_value, @r2.glucose_value].max
+  end
+  
+  it "should have an max_glucose_level for a specific meal_code" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user, meal_code: 2)
+    @r2 = Factory(:glucose_reading, user: @user, meal_code: 2)
+    @r3 = Factory(:glucose_reading, user: @user, meal_code: 3)
+    @user.max_glucose_level(meal_code: 2).should == [@r1.glucose_value, @r2.glucose_value].max
+  end
+  
 end
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer         not null, primary key
+#  user_name       :string(255)
+#  email           :string(255)
+#  password_digest :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+

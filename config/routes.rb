@@ -1,4 +1,6 @@
 Bssm::Application.routes.draw do
+  resources :glucose_readings
+
   resources :users
 
   # The priority is based upon order of creation:

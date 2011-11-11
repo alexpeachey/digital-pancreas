@@ -27,7 +27,8 @@ group :development do
   gem 'rspec-rails', '2.7.0'
   gem 'rb-fsevent', '0.4.3.1', require: false if RUBY_PLATFORM =~ /darwin/i
   gem 'growl', '1.0.3'
-  gem 'guard-rspec', '0.5.2' 
+  gem 'guard-rspec', '0.5.2'
+  gem 'guard-spork', '0.3.1'
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem 'foreman', '0.26.0'
   gem 'heroku'

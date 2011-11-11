@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111109012029) do
+ActiveRecord::Schema.define(:version => 20111111001416) do
+
+  create_table "glucose_readings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "glucose_value"
+    t.datetime "reading_at"
+    t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "meal_code"
+  end
+
+  add_index "glucose_readings", ["meal_code"], :name => "index_glucose_readings_on_meal_code"
+  add_index "glucose_readings", ["reading_at"], :name => "index_glucose_readings_on_reading_at"
+  add_index "glucose_readings", ["user_id"], :name => "index_glucose_readings_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "user_name"

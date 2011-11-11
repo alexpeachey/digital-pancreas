@@ -1,0 +1,2 @@
+module GlucoseReadingsHelper
+end
