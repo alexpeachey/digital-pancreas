@@ -9,6 +9,27 @@ class GlucoseReading < ActiveRecord::Base
   scope :between, lambda { |d1,d2| where('reading_at >= ? and reading_at <= ?',d1,d2) }
   scope :by_meal_code, lambda { |mc| where('meal_code = ?',mc) }
   scope :recent, order('reading_at desc')
+  
+  def meal_code_name
+    case self.meal_code
+    when 1 
+      'Before Breakfast'
+    when 2 
+      'After Breakfast'
+    when 3 
+      'Before Lunch'
+    when 4 
+      'After Lunch'
+    when 5 
+      'Before Dinner'
+    when 6 
+      'After Dinner'
+    when 7 
+      'Before Bed'
+    else
+      'Undefined'
+    end
+  end
 end
 # == Schema Information
 #

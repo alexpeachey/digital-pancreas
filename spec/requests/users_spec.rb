@@ -29,7 +29,7 @@ describe "Users" do
       fill_in 'Password', with: 'password'
       fill_in 'Password confirmation', with: 'password'
       click_button 'Create Account'
-      page.should have_content("Signed In")
+      page.should have_content("user1")
     end
   end
   
@@ -44,7 +44,6 @@ describe "Users" do
       fill_in 'Email', with: 'update@example.com'
       click_button 'Update Account'
       page.should have_content("Successfully updated account.")
-      page.should have_content('update@example.com')
     end
   end
   

@@ -1,5 +1,8 @@
-%h1 New glucose_reading
+-title "Blood Sugar Sex Magik: New Blood Glucose Reading"
 
-= render 'form'
-
-= link_to 'Back', glucose_readings_path
+%header
+  %h1 New Blood Glucose Reading
+%section#blood_glucose_entry_area
+  = render 'form'
+%section#return_to_user
+  = link_to 'Account', current_user

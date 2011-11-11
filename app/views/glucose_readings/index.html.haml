@@ -1,23 +1,25 @@
-%h1= "Listing glucose_readings for #{@user.user_name}"
+-title "Blood Sugar Sex Magik: Blood Glucose Readings for #{@user.user_name}"
 
-%table
-  %tr
-    %th Glucose value
-    %th Reading at
-    %th Comment
-    %th
-    %th
-    %th
-
-  - @glucose_readings.each do |glucose_reading|
+%header#blood_glucose_index_header
+  %h1= "Blood Glucose Readings for #{@user.user_name}"
+%section#blood_glucose_index
+  %table
     %tr
-      %td= glucose_reading.glucose_value
-      %td= glucose_reading.reading_at
-      %td= glucose_reading.comment
-      %td= link_to 'Show', glucose_reading
-      %td= link_to 'Edit', edit_glucose_reading_path(glucose_reading)
-      %td= link_to 'Destroy', glucose_reading, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Glucose reading', new_glucose_reading_path
+      %th Reading at
+      %th Meal Code
+      %th Glucose value
+      %th Comment
+      %th
+      %th
+    - @glucose_readings.each do |glucose_reading|
+      %tr
+        %td= nice_date(glucose_reading.reading_at)
+        %td= glucose_reading.meal_code_name
+        %td= glucose_reading.glucose_value
+        %td= glucose_reading.comment
+        %td= link_to 'Edit', edit_glucose_reading_path(glucose_reading)
+        %td= link_to 'Delete', glucose_reading, :confirm => 'Are you sure?', :method => :delete
+%nav
+  = link_to 'New Blood Glucose Reading', new_glucose_reading_path
+  \|
+  = link_to 'Account', current_user

@@ -19,16 +19,19 @@ class User < ActiveRecord::Base
   
   def average_glucose_level(*args)
     levels = valid_levels_for_args(args)
+    return 0 unless levels.any?
     levels.inject { |sum, r| sum + r }.to_f / levels.size
   end
   
   def min_glucose_level(*args)
     levels = valid_levels_for_args(args)
+    return 0 unless levels.any?
     levels.min
   end
   
   def max_glucose_level(*args)
     levels = valid_levels_for_args(args)
+    return 0 unless levels.any?
     levels.max
   end
   

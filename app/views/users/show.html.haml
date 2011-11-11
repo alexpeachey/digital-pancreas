@@ -1,13 +1,21 @@
--if current_user == @user
-  %h2 Signed In
+-title "Blood Sugar Sex Magik: #{@user.user_name}"
 
-%p
-  %b User name:
-  = @user.user_name
-%p
-  %b Email:
-  = @user.email
-
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', users_path
+%header#account_header
+  %h1= @user.user_name
+%section#account_details
+  %table
+    %tr
+      %th Average Blood Glucose
+      %td= @user.average_glucose_level
+    %tr
+      %th Minimum Blood Glucose
+      %td= @user.min_glucose_level
+    %tr
+      %th Maximum Blood Glucose
+      %td= @user.max_glucose_level
+%nav
+  = link_to 'All Blood Glucose Readings', glucose_readings_path
+  \|
+  = link_to 'New Blood Glucose Reading', new_glucose_reading_path
+  \|
+  = link_to 'Sign Out', sign_out_path

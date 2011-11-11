@@ -60,7 +60,7 @@ describe "GlucoseReadings" do
       fill_in "Password", with: "password"
       click_button "Sign In"
       visit glucose_readings_path
-      click_link "Destroy"
+      click_link "Delete"
       page.should have_content("Glucose Reading Deleted")
       page.should_not have_content('120')
     end
