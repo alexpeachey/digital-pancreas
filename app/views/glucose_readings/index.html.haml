@@ -1,8 +1,7 @@
-%h1 Listing glucose_readings
+%h1= "Listing glucose_readings for #{@user.user_name}"
 
 %table
   %tr
-    %th User
     %th Glucose value
     %th Reading at
     %th Comment
@@ -12,7 +11,6 @@
 
   - @glucose_readings.each do |glucose_reading|
     %tr
-      %td= glucose_reading.user_id
       %td= glucose_reading.glucose_value
       %td= glucose_reading.reading_at
       %td= glucose_reading.comment

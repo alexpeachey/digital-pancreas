@@ -9,7 +9,7 @@ Bssm::Application.routes.draw do
   resources :glucose_readings
 
   match 'sign_up' => 'users#new', as: :sign_up
-  resources :users, except: [:index] do
+  resources :users, except: [:index,:destroy] do
   end
 
   # The priority is based upon order of creation:
