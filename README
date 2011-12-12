@@ -1,11 +1,12 @@
-== Blood Sugar Sex Magik
+== Digital Pancreas
 
-Blood Sugar Sex Magik is a rails application designed to allow quick and easy tracking of blood sugar
-levels for diabetics. It utilizes responsive design so it is as useful on your phone as your desktop.
+Digital Pancreas is a rails application designed to allow quick and easy tracking of blood glucose, insulin, carbohydrate intake, and exercise. It is designed for Type I Diabetics with the goal of eventually being able to recommend the best insulin doses.
+
+It utilizes responsive design so it is as useful on your phone as your desktop.
 
 
 == Getting Started
 
-You can choose to just use the application. It can be found at http://blood-sugar-sex-magik.herokuapp.com
+You can choose to just use the application. It can be found at http://www.digitalpancreas.com
 or you can clone this repo and deploy to your own server/environment.
 
