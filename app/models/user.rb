@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include DiabeticCalculator
   extend FriendlyId
   friendly_id :user_name
   attr_accessible :user_name, :email, :password, :password_confirmation
@@ -21,40 +22,23 @@ class User < ActiveRecord::Base
     val.nil? ? write_attribute(:email,val) : write_attribute(:email,val.downcase)
   end
   
-  def average_glucose_level(*args)
-    levels = valid_levels_for_args(args)
-    return 0 unless levels.any?
-    levels.inject { |sum, r| sum + r }.to_f / levels.size
-  end
-  
-  def min_glucose_level(*args)
-    levels = valid_levels_for_args(args)
-    return 0 unless levels.any?
-    levels.min
-  end
-  
-  def max_glucose_level(*args)
-    levels = valid_levels_for_args(args)
-    return 0 unless levels.any?
-    levels.max
+  def method_missing(method_name,*args,&block)
+    case method_name
+    when /^average_(\w+)_level/ then
+      average_level(add_measurement_to_args($1,args))
+    when /^min_(\w+)_level/ then
+      min_level(add_measurement_to_args($1,args))
+    when /^max_(\w+)_level/ then
+      max_level(add_measurement_to_args($1,args))
+    else super method_name, *args, &block
+    end
   end
   
   private
-  def valid_levels_for_args(*args)
+  def add_measurement_to_args(measurement,*args)
     args = Hash[*args.flatten]
-    if args[:begin_date].present? && args[:end_date].present?
-      levels = self.glucose_readings.between(args[:begin_date],args[:end_date]).map { |r| r.glucose_value }
-    elsif args[:begin_date].present?
-      levels ||= self.glucose_readings.between(args[:begin_date],Time.now).map { |r| r.glucose_value }
-    elsif args[:n].present? 
-      levels = self.glucose_readings.recent.limit(args[:n]).map { |r| r.glucose_value }
-    elsif args[:meal_code].present?
-      levels = self.glucose_readings.by_meal_code(args[:meal_code]).map { |r| r.glucose_value }
-    else
-      levels = self.glucose_readings.map { |r| r.glucose_value }
-    end
-    
-    levels
+    args[:measurement] = measurement.to_sym
+    args
   end
   
 end

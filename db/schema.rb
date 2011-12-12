@@ -11,16 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111111001416) do
+ActiveRecord::Schema.define(:version => 20111212181531) do
 
   create_table "glucose_readings", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "glucose_value"
+    t.integer  "glucose"
     t.datetime "reading_at"
     t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "meal_code"
+    t.integer  "bolus",      :default => 0
+    t.integer  "basal",      :default => 0
+    t.integer  "exercise",   :default => 0
+    t.integer  "carbs",      :default => 0
   end
 
   add_index "glucose_readings", ["meal_code"], :name => "index_glucose_readings_on_meal_code"

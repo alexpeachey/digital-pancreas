@@ -7,7 +7,7 @@ end
 
 Factory.define :glucose_reading do |f|
   f.association :user
-  f.glucose_value 80 + rand(40)
+  f.glucose 80 + rand(40)
   f.meal_code 1 + rand(6)
   f.reading_at  Time.now
 end

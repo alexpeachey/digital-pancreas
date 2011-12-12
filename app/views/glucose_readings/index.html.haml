@@ -15,7 +15,7 @@
       %tr
         %td= nice_date(glucose_reading.reading_at)
         %td= glucose_reading.meal_code_name
-        %td= glucose_reading.glucose_value
+        %td= glucose_reading.glucose
         %td= glucose_reading.comment
         %td= link_to 'Edit', edit_glucose_reading_path(glucose_reading)
         %td= link_to 'Delete', glucose_reading, :confirm => 'Are you sure?', :method => :delete

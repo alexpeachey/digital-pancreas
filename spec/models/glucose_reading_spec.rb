@@ -4,11 +4,11 @@ describe GlucoseReading do
   
   before(:each) do
     @user = Factory(:user)
-    @glucose_reading = GlucoseReading.new({ glucose_value: 100, reading_at: Time.now, meal_code: 1, comment: 'Test Reading' })
+    @glucose_reading = GlucoseReading.new({ glucose: 100, reading_at: Time.now, meal_code: 1, comment: 'Test Reading' })
     @glucose_reading.user_id = @user.id
   end
   
-  it "should be valid with a user_id, glucose_alue, and reading_at" do
+  it "should be valid with a user_id, glucose, and reading_at" do
     @glucose_reading.should be_valid
   end
   
@@ -24,12 +24,12 @@ describe GlucoseReading do
   end
   
   it "should not be valid without a glucose_value" do
-    @glucose_reading.glucose_value = nil
+    @glucose_reading.glucose = nil
     @glucose_reading.should_not be_valid
   end
   
   it "should not be valid with a glucose_value <= 0" do
-    @glucose_reading.glucose_value = -1
+    @glucose_reading.glucose = -1
     @glucose_reading.should_not be_valid
   end
   
@@ -48,8 +48,8 @@ describe GlucoseReading do
     @glucose_reading.should_not be_valid
   end
   
-  it "should not be valid with a meal_code > 7" do
-    @glucose_reading.meal_code = 8
+  it "should not be valid with a meal_code > 8" do
+    @glucose_reading.meal_code = 9
     @glucose_reading.should_not be_valid
   end
   
@@ -70,5 +70,23 @@ end# == Schema Information
 #  created_at    :datetime
 #  updated_at    :datetime
 #  meal_code     :integer
+#
+
+# == Schema Information
+#
+# Table name: glucose_readings
+#
+#  id         :integer         not null, primary key
+#  user_id    :integer
+#  glucose    :integer
+#  reading_at :datetime
+#  comment    :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#  meal_code  :integer
+#  bolus      :integer         default(0)
+#  basal      :integer         default(0)
+#  exercise   :integer         default(0)
+#  carbs      :integer         default(0)
 #
 
