@@ -12,7 +12,12 @@
         = content_tag :div, msg, :class => "#{name}"
       %header#site_header
         = image_tag 'bssm_logo.png', alt: "Blood Drop", title: "Digital Pancreas", id: "logo"
-        %h1 BLOOD SUGAR SEX MAGIK
+        %h1 Digital Pancreas
       #content
         =yield
+      %footer#site_footer
+        = link_to 'Home', current_user
+        = link_to 'New Entry', new_glucose_reading_path
+        = link_to 'All Readings', glucose_readings_path
+        = link_to 'Sign Out', sign_out_path
     = javascript_include_tag 'application'

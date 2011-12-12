@@ -1,3 +1,27 @@
-// Place all the styles related to the glucose_readings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+section#reading_entry
+  +content-area(400,2em,false)
+  form
+    .field
+      +standard-margin(368)
+      label
+        +inline-block
+        width: percentage(100/336)
+      input[type=text], input[type=password], input[type=email], input[type=number]
+        width: percentage(220/336)
+    .actions
+      +standard-margin(368)
+
+section#blood_glucose_readings
+  +content_area(400,2em,false)
+  overflow-x: auto
+  section#blood_glucose_index
+    table
+      width: 100%
+      margin: 1em 0
+      th,td
+        padding: percentage(4/368)
+      th
+        font-weight: bold
+      td
+        a
+          +bssm_link

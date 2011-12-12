@@ -1,23 +1,21 @@
 section#account
-  +content-area(400,2em,true)
+  +content-area(400,2em,false)
   header#account_header
-    margin: 1em percentage(16/400)
-    width: percentage(368/400)
+    +clearfix
     h1
-      font-size: 2em
+      +clearfix
+      a
+        float: right
+        margin: 0.1em
+        +bssm_button
+        font-size: 1em
   section#account_details
-    margin: 1em percentage(16/400)
-    width: percentage(368/400)
+    +clearfix
     table
       width: 100%
+      margin: 1em 0
       th,td
-        padding: percentage(8/368)
+        padding: percentage(2/368)
       th
-        width: percentage(300/368)
-      td
-        width: percentage(68/368)
-  nav#account_navigation
-    margin: 1em percentage(16/400)
-    width: percentage(368/400)
-    a
-      +bssm_link
+        font-weight: bold
+

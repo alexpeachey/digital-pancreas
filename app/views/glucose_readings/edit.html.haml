@@ -1,10 +1,7 @@
 -title "Digital Pancreas: Edit Blood Glucose Reading for #{@user.user_name}"
 
-%header#edit_blood_glucose_header
-  %h1= "Editing Blood Glucose Reading for #{@user.user_name}"
-%section#edit_blood_glucose_area
-  = render 'form'
-%nav
-  = link_to 'All Blood Glucose Readings', glucose_readings_path
-  \|
-  = link_to 'Account', current_user
+%section#reading_entry
+  %header#edit_entry_header
+    %h1= 'Edit Entry'
+  %section#edit_entry
+    = render 'glucose_readings/form'

@@ -199,6 +199,14 @@ describe User do
     @user.average_carbs_level.should == 60
   end
   
+  it "should have an average_bolus_level that ignores readings of 0" do
+    @user.save
+    @r1 = Factory(:glucose_reading, user: @user, bolus: 10)
+    @r2 = Factory(:glucose_reading, user: @user, bolus: 12)
+    @r3 = Factory(:glucose_reading, user: @user, bolus: 0)
+    @user.average_bolus_level.should == 11
+  end
+  
 end
 # == Schema Information
 #

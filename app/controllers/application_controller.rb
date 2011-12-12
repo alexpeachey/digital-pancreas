@@ -21,4 +21,21 @@ class ApplicationController < ActionController::Base
     flash[:warning] = 'Please login or create an account.'
     redirect_to sign_in_path
   end
+  
+  def load_meal_codes
+    @meal_codes = meal_codes
+  end
+  
+  def meal_codes
+    {
+      '1. Before Breakfast' => 1,
+      '2. After Breakfast' => 2,
+      '3. Before Lunch' => 3,
+      '4. After Lunch' => 4,
+      '5. Before Dinner' => 5,
+      '6. After Dinner' => 6,
+      '7. Before Bed' => 7
+    }
+  end
+  
 end

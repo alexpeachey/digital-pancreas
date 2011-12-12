@@ -1,8 +1,7 @@
--title "Digital Pancreas: New Blood Glucose Reading"
+-title "Digital Pancreas: New Entry"
 
-%header
-  %h1 New Blood Glucose Reading
-%section#blood_glucose_entry_area
-  = render 'form'
-%section#return_to_user
-  = link_to 'Account', current_user
+%section#reading_entry
+  %header#new_entry_header
+    %h1= 'New Entry'
+  %section#new_entry
+    = render 'glucose_readings/form'

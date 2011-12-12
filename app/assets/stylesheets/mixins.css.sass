@@ -1,0 +1,39 @@
+=standard-margin($width)
+  $new-width: $width - 32
+  margin: 1em percentage(16/$width)
+  width: percentage(($new-width)/$width)
+
+=content-area($width: $margined_page_width,$vertical-margin: 1em,$centered: false)
+  $m: percentage(14/$margined_page_width)
+  @if $centered 
+    $m: percentage( ( ($margined_page_width - $width - 2) / 2 ) / $margined_page_width )
+  margin: $vertical-margin $m
+  width: percentage($width/$margined_page_width)
+  border: 1px solid #eee
+  +box-shadow(#333 1px 1px 1px 1px inset)
+  +border-radius(5px)
+  header
+    +standard-margin($width)
+    h1
+      font-size: 2em
+  section
+    +standard-margin($width)
+
+=bssm_link
+  text-decoration: none
+  color: $p_warm
+  &:hover
+    text-decoration: underline
+
+=bssm_button
+  padding: 0.5em
+  text-decoration: none
+  color: $p_warm
+  font-size: 1.5em
+  border: 3px solid $p_warm
+  +border-radius(15px)
+  background: white
+  +box-shadow(#333 1px 1px 1px 1px)
+  &:hover
+    background: $p_warm
+    color: white

@@ -22,7 +22,8 @@ class GlucoseReadingsController < ApplicationController
 
   def new
     @glucose_reading = @user.glucose_readings.build
-
+    @glucose_reading.reading_at = Time.now
+    
     respond_to do |format|
       format.html
       format.json { render json: @glucose_reading }
@@ -37,7 +38,7 @@ class GlucoseReadingsController < ApplicationController
 
     respond_to do |format|
       if @glucose_reading.save
-        format.html { redirect_to @glucose_reading, notice: 'Glucose Reading Logged!' }
+        format.html { redirect_to current_user, notice: 'Glucose Reading Logged!' }
         format.json { render json: @glucose_reading, status: :created, location: @glucose_reading }
       else
         format.html { render action: "new" }
@@ -50,7 +51,7 @@ class GlucoseReadingsController < ApplicationController
 
     respond_to do |format|
       if @glucose_reading.update_attributes(params[:glucose_reading])
-        format.html { redirect_to @glucose_reading, notice: 'Glucose Reading Updated!' }
+        format.html { redirect_to current_user, notice: 'Glucose Reading Updated!' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -63,30 +64,14 @@ class GlucoseReadingsController < ApplicationController
     @glucose_reading.destroy
 
     respond_to do |format|
-      format.html { redirect_to glucose_readings_url, notice: 'Glucose Reading Deleted!' }
+      format.html { redirect_to current_user, notice: 'Glucose Reading Deleted!' }
       format.json { head :ok }
     end
   end
   
   private
-  def meal_codes
-    {
-      '1. Before Breakfast' => 1,
-      '2. After Breakfast' => 2,
-      '3. Before Lunch' => 3,
-      '4. After Lunch' => 4,
-      '5. Before Dinner' => 5,
-      '6. After Dinner' => 6,
-      '7. Before Bed' => 7
-    }
-  end
-  
   def set_user
     @user = current_user
-  end
-  
-  def load_meal_codes
-    @meal_codes = meal_codes
   end
   
   def load_reading

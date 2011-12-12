@@ -2,19 +2,41 @@
 
 %section#account
   %header#account_header
-    %h1= @user.proper_name
+    %h1
+      = @user.proper_name
+      = link_to 'New Entry', new_glucose_reading_path
   %section#account_details
     %table
       %tr
-        %th Average Blood Glucose
+        %th Measurement
+        %th Avg
+        %th Min
+        %th Max
+      %tr
+        %td= 'Blood Glucose'
         %td= number_with_precision(@user.average_glucose_level, precision: 0)
-      %tr
-        %th Minimum Blood Glucose
         %td= @user.min_glucose_level
-      %tr
-        %th Maximum Blood Glucose
         %td= @user.max_glucose_level
+      %tr
+        %td= 'Carbs'
+        %td= number_with_precision(@user.average_carbs_level, precision: 0)
+        %td= @user.min_carbs_level
+        %td= @user.max_carbs_level
+      %tr
+        %td= 'Exercise'
+        %td= number_with_precision(@user.average_exercise_level, precision: 0)
+        %td= @user.min_exercise_level
+        %td= @user.max_exercise_level
+      %tr
+        %td= 'Bolus'
+        %td= number_with_precision(@user.average_bolus_level, precision: 0)
+        %td= @user.min_bolus_level
+        %td= @user.max_bolus_level
+      %tr
+        %td= 'Basal'
+        %td= number_with_precision(@user.average_basal_level, precision: 0)
+        %td= @user.min_basal_level
+        %td= @user.max_basal_level 
   %nav#account_navigation
-    = link_to 'All Readings', glucose_readings_path
-    \|
-    = link_to 'Sign Out', sign_out_path
+    
+

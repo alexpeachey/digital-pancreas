@@ -1,18 +1,19 @@
 class UsersController < ApplicationController
   skip_before_filter :require_login, only: [:account,:new,:create]
+  before_filter :load_meal_codes, only: [:show]
 
   def account
     redirect_to current_user and return if current_user.present?
     redirect_to sign_in_path
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
     @user = current_user
+    @glucose_reading = @user.glucose_readings.build
+    @glucose_reading.reading_at = Time.now
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @user }
     end
   end

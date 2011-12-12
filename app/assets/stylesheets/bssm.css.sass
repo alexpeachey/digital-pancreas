@@ -1,10 +1,13 @@
 $p_warm: #b40000
 $text_dark: #333333
 $text_font: helvetica, arial, sans-serif
+$page_width: 460
+$margined_page_width: $page_width - 32
 
 @import compass
 @import compass/reset
 @import compass/layout
+@import mixins
 
 +global-reset
 
@@ -21,15 +24,15 @@ body
 
 header#site_header
   +clearfix
-  margin: 1em percentage(16/1020)
-  padding: 1em percentage(16/1020)
-  width: percentage(956/1020)
+  margin: 1em percentage(16/$page_width)
+  padding: 1em percentage(16/$page_width)
+  width: percentage(396/$page_width)
   border: 1px solid #eee
   +box-shadow(#333 1px 1px 1px 1px inset)
   +border-radius(5px)
   #logo
     float: left
-    width: percentage(48/956)
+    width: percentage(48/396)
     img
       width: 100%
   h1
@@ -38,29 +41,34 @@ header#site_header
     font:
       weight: bold
       size: 3em
-    width: percentage(908/956)
+    width: percentage(348/396)
 
 #content
   clear: both
-  margin: 1em percentage(16/1020)
-  width: percentage(988/1020)
+  +standard-margin($page_width)
+  
+nav#account_navigation
+  +clearfix
+  +standard-margin(400)
+  a
+    float: left
+    margin: 1em
+    +bssm_button
 
-=content-area($width: 988,$vertical-margin: 1em,$centered: false)
-  $m: percentage(14/988)
-  @if $centered 
-    $m: percentage( ( (988 - $width - 2) / 2 ) / 988 )
-  margin: $vertical-margin $m
-  width: percentage($width/988)
+footer#site_footer
+  +clearfix
+  margin: 1em percentage(16/$page_width)
+  padding: 1em percentage(16/$page_width)
+  width: percentage(396/$page_width)
   border: 1px solid #eee
   +box-shadow(#333 1px 1px 1px 1px inset)
   +border-radius(5px)
+  a
+    float: left
+    margin: 0.25em percentage(16/396)
+    +bssm_button
 
-=bssm_link
-  text-decoration: none
-  color: $p_warm
-  &:hover
-    text-decoration: underline
-
+@import form
 @import users
 @import glucose_readings
 @import sessions

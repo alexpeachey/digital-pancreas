@@ -1,0 +1,19 @@
+form
+  .field
+    input[type=text], input[type=password], input[type=email], input[type=number]
+      height: 3em
+      border: 1px solid $p_warm
+      +border-radius(5px)
+      background: white
+      color: $text_dark
+    select
+      height: 3em
+      border: 1px solid $p_warm
+      +border-radius(5px)
+      background: white
+      color: $text_dark
+  .actions
+    +clearfix
+    input[type=submit]
+      float: right
+      +bssm_button

@@ -1,3 +1,8 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+window.GlucoseReadingController = () ->
+  grc = this
+  
+  grc.init = () ->
+    $('#glucose_reading_reading_at').datetimepicker({dateFormat: "yy-mm-dd", timeFormat: 'hh:mm', showAnim: "blind"})
+    return grc
+  
+  grc.init()
