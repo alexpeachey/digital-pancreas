@@ -1,7 +1,7 @@
 !!! 5
 %html
   %head
-    %title= yield(:title) || 'BSSM'
+    %title= yield(:title) || 'Digital Pancreas'
     %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
     = stylesheet_link_tag 'application'
     = csrf_meta_tag
@@ -10,6 +10,9 @@
     #container
       -flash.each do |name, msg|
         = content_tag :div, msg, :class => "#{name}"
+      %header#site_header
+        = image_tag 'bssm_logo.png', alt: "Blood Drop", title: "Digital Pancreas", id: "logo"
+        %h1 BLOOD SUGAR SEX MAGIK
       #content
         =yield
     = javascript_include_tag 'application'

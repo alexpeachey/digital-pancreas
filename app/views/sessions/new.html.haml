@@ -1,18 +1,19 @@
--title "Blood Sugar Sex Magik: Sign In"
+-title "Digital Pancreas: Sign In"
 
-%header
-  %h1 Sign In
-%section#sign_in_area
-  = form_tag sessions_path, method: :post do
-    .field
-      = label_tag :user_name
-      = text_field_tag :user_name, params[:user_name]
-    .field
-      = label_tag :password
-      = password_field_tag :password
-    .actions
-      = submit_tag "Sign In"
-%section#new_account_needed
-  %h2
-    Need an account?
-    = link_to 'Sign Up', sign_up_path
+%section#sessions
+  %header.sessions_header
+    %h1 Sign In
+  %section.sessions_form_section
+    = form_tag sessions_path, method: :post do
+      .field
+        = label_tag :user_name
+        = text_field_tag :user_name, params[:user_name]
+      .field
+        = label_tag :password
+        = password_field_tag :password
+      .actions
+        = submit_tag "Sign In"
+  %section.alternate_sessions_path
+    %h2
+      Need an account?
+      = link_to 'Sign Up', sign_up_path

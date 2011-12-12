@@ -1,0 +1,40 @@
+section#sessions
+  +content-area(400,5em,true)
+  header.sessions_header
+    margin: 1em percentage(16/400)
+    width: percentage(368/400)
+    h1
+      font-size: 2em
+  section.sessions_form_section
+    margin: 1em percentage(16/400)
+    width: percentage(368/400)
+    .field
+      margin: 1em percentage(16/368)
+      width: percentage(336/368)
+      label
+        +inline-block
+        width: percentage(100/336)
+      input[type=text], input[type=password], input[type=email]
+        width: percentage(226/336)
+        height: 2em
+        +border-radius(5px)
+    .actions
+      +clearfix
+      margin: 1em percentage(16/368)
+      width: percentage(336/368)
+      input[type=submit]
+        float: right
+        padding: 0.5em (8/336)
+        font-size: 1.5em
+        border: 3px solid $p_warm
+        +border-radius(15px)
+        background: white
+        +box-shadow(#333 1px 1px 1px 1px)
+        &:hover
+          background: $p_warm
+          color: white
+  section.alternate_sessions_path
+    margin: 1em percentage(16/400)
+    width: percentage(368/400)
+    a
+      +bssm_link

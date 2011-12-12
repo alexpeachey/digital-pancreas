@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
     val.nil? ? write_attribute(:user_name,val) : write_attribute(:user_name,val.downcase)
   end
   
+  def proper_name
+    user_name.capitalize
+  end
+  
   def email=(val)
     val.nil? ? write_attribute(:email,val) : write_attribute(:email,val.downcase)
   end

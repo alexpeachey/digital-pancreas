@@ -1,0 +1,67 @@
+$p_warm: #b40000
+$text_dark: #333333
+$text_font: helvetica, arial, sans-serif
+
+@import compass
+@import compass/reset
+@import compass/layout
+
++global-reset
+
+html
+  width: 100%
+
+body
+  width: 100%
+  margin: 0
+  font:
+    family: $text_font
+    size: 1em
+  color: $text_dark
+
+header#site_header
+  +clearfix
+  margin: 1em percentage(16/1020)
+  padding: 1em percentage(16/1020)
+  width: percentage(956/1020)
+  border: 1px solid #eee
+  +box-shadow(#333 1px 1px 1px 1px inset)
+  +border-radius(5px)
+  #logo
+    float: left
+    width: percentage(48/956)
+    img
+      width: 100%
+  h1
+    float: left
+    color: $p_warm
+    font:
+      weight: bold
+      size: 3em
+    width: percentage(908/956)
+
+#content
+  clear: both
+  margin: 1em percentage(16/1020)
+  width: percentage(988/1020)
+
+=content-area($width: 988,$vertical-margin: 1em,$centered: false)
+  $m: percentage(14/988)
+  @if $centered 
+    $m: percentage( ( (988 - $width - 2) / 2 ) / 988 )
+  margin: $vertical-margin $m
+  width: percentage($width/988)
+  border: 1px solid #eee
+  +box-shadow(#333 1px 1px 1px 1px inset)
+  +border-radius(5px)
+
+=bssm_link
+  text-decoration: none
+  color: $p_warm
+  &:hover
+    text-decoration: underline
+
+@import users
+@import glucose_readings
+@import sessions
+@import flash

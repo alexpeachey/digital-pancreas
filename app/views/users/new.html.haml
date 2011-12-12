@@ -1,31 +1,31 @@
--title "Blood Sugar Sex Magik: New Account"
+-title "Digital Pancreas: New Account"
 
-%header#new_account_header
-  %h1 New Account
-%section#new_account_area
-  = form_for @user do |f|
-    -if @user.errors.any?
-      #error_explanation
-        %h2= "#{pluralize(@user.errors.count, "error")} prohibited this account from being saved:"
-        %ul
-          - @user.errors.full_messages.each do |msg|
-            %li= msg
-
-    .field
-      = f.label :user_name
-      = f.text_field :user_name
-    .field
-      = f.label :email
-      = f.email_field :email
-    .field
-      = f.label :password
-      = f.password_field :password
-    .field
-      = f.label :password_confirmation
-      = f.password_field :password_confirmation
-    .actions
-      = f.submit 'Create Account'
-%section#sign_in_needed
-  %h2
-    Already have an account?
-    = link_to 'Sign In', sign_in_path
+%section#sessions
+  %header.sessions_header
+    %h1 New Account
+  %section.sessions_form_section
+    = form_for @user do |f|
+      -if @user.errors.any?
+        #error_explanation
+          %h2= "#{pluralize(@user.errors.count, "error")} prohibited this account from being saved:"
+          %ul
+            - @user.errors.full_messages.each do |msg|
+              %li= msg
+      .field
+        = f.label :user_name
+        = f.text_field :user_name
+      .field
+        = f.label :email
+        = f.email_field :email
+      .field
+        = f.label :password
+        = f.password_field :password
+      .field
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation
+      .actions
+        = f.submit 'Create Account'
+  %section.alternate_sessions_path
+    %h2
+      Already have an account?
+      = link_to 'Sign In', sign_in_path

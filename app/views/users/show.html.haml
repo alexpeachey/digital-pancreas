@@ -1,21 +1,20 @@
--title "Blood Sugar Sex Magik: #{@user.user_name}"
+-title "Digital Pancreas: #{@user.user_name}"
 
-%header#account_header
-  %h1= @user.user_name
-%section#account_details
-  %table
-    %tr
-      %th Average Blood Glucose
-      %td= @user.average_glucose_level
-    %tr
-      %th Minimum Blood Glucose
-      %td= @user.min_glucose_level
-    %tr
-      %th Maximum Blood Glucose
-      %td= @user.max_glucose_level
-%nav
-  = link_to 'All Blood Glucose Readings', glucose_readings_path
-  \|
-  = link_to 'New Blood Glucose Reading', new_glucose_reading_path
-  \|
-  = link_to 'Sign Out', sign_out_path
+%section#account
+  %header#account_header
+    %h1= @user.proper_name
+  %section#account_details
+    %table
+      %tr
+        %th Average Blood Glucose
+        %td= number_with_precision(@user.average_glucose_level, precision: 0)
+      %tr
+        %th Minimum Blood Glucose
+        %td= @user.min_glucose_level
+      %tr
+        %th Maximum Blood Glucose
+        %td= @user.max_glucose_level
+  %nav#account_navigation
+    = link_to 'All Readings', glucose_readings_path
+    \|
+    = link_to 'Sign Out', sign_out_path
