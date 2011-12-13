@@ -2,7 +2,9 @@
 %html
   %head
     %title= yield(:title) || 'Digital Pancreas'
-    %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
+    %meta{"http-equiv" => "Content-Type", content: "text/html; charset=utf-8"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+    = javascript_include_tag 'modernizr-2.0.6'
     = stylesheet_link_tag 'application'
     = csrf_meta_tag
     = yield(:head)
@@ -18,6 +20,7 @@
       %footer#site_footer
         = link_to 'Home', current_user
         = link_to 'New Entry', new_glucose_reading_path
-        = link_to 'All Readings', glucose_readings_path
+        = link_to 'History', glucose_readings_path
+        = link_to 'Pay', payments_path, class: 'highlight_button'
         = link_to 'Sign Out', sign_out_path
     = javascript_include_tag 'application'

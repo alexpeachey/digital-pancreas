@@ -8,5 +8,6 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery-ui-timepicker-addon
+//= require jquery.cookie
 //= require glucose_readings
 //= require bssm

@@ -67,9 +67,20 @@ footer#site_footer
     float: left
     margin: 0.25em percentage(16/396)
     +bssm_button
+  a.highlight_button
+    color: white
+    background: $p_warm
+    &:hover
+      color: $p_warm
+      background: white
+
+#error_explanation
+  display: none
+
 
 @import form
 @import users
 @import glucose_readings
 @import sessions
+@import payments
 @import flash

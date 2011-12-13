@@ -27,9 +27,13 @@ describe "GlucoseReadings" do
       click_button "Sign In"
       visit new_glucose_reading_path
       fill_in "Glucose", with: 120
+      fill_in "Carbs", with: 50
+      fill_in "Exercise", with: 20
+      fill_in "Bolus", with: 10
+      fill_in "Basal", with: 30
       select '2', from: 'Meal'
       fill_in "Comment", with: 'Test Reading'
-      click_button "Log"
+      click_button "Save"
       page.should have_content("Glucose Reading Logged")
     end
   end
@@ -44,7 +48,11 @@ describe "GlucoseReadings" do
       click_button "Sign In"
       visit edit_glucose_reading_path @r1
       fill_in "Glucose", with: 110
-      click_button "Log"
+      fill_in "Carbs", with: 50
+      fill_in "Exercise", with: 20
+      fill_in "Bolus", with: 10
+      fill_in "Basal", with: 30
+      click_button "Save"
       page.should have_content("Glucose Reading Updated")
     end
   end

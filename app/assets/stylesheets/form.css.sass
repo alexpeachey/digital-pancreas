@@ -12,8 +12,14 @@ form
       +border-radius(5px)
       background: white
       color: $text_dark
+  .field_with_errors
+    display: inline
+    label
+      color: $p_warm
+      font-weight: bold
+    input[type=text], input[type=password], input[type=email], input[type=number], select
+      border: 3px solid $p_warm
   .actions
     +clearfix
     input[type=submit]
-      float: right
       +bssm_button

@@ -1,11 +1,17 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :require_login
+  before_filter :set_timezone
   helper_method :current_user
   
   protected
   def not_found
     raise ActionController::RoutingError.new('Not Found')
+  end
+  
+  def set_timezone
+    min = request.cookies["time_zone"].to_i
+    Time.zone = ActiveSupport::TimeZone[-min.minutes]
   end
   
   private

@@ -1,5 +1,5 @@
 class GlucoseReading < ActiveRecord::Base
-  attr_accessible :glucose, :reading_at, :meal_code, :comment
+  attr_accessible :glucose, :carbs, :exercise, :bolus, :basal, :reading_at, :meal_code, :comment
   validates_presence_of :user_id
   validates_numericality_of :glucose, greater_than: 0
   validates_presence_of :reading_at

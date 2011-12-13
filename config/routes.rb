@@ -6,6 +6,8 @@ Bssm::Application.routes.draw do
   match 'sign_out' => 'sessions#destroy', as: :sign_out
   resources :sessions, only: [:new,:create,:destroy]
   
+  resources :payments, only: [:index]
+  
   resources :glucose_readings
 
   match 'sign_up' => 'users#new', as: :sign_up
