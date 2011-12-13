@@ -32,6 +32,7 @@ group :development do
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem 'foreman', '0.26.0'
   gem 'heroku'
+  gem 'heroku_plus'
   gem 'silent-postgres', '0.1.1'
 end
 
